@@ -11,6 +11,8 @@
  * @param {ListNode} headB
  * @return {ListNode}
  */
+
+// 技巧一 map或set解决
 var getIntersectionNode = function(headA, headB) {
   if (!headA || !headB) return null
   let map = new Map()
@@ -29,7 +31,8 @@ var getIntersectionNode = function(headA, headB) {
   return null
 };
 
-var getIntersectionNode1 = function(headA, headB) {
+// 技巧二 访问完其中一个后访问另一个
+var getIntersectionNode = function(headA, headB) {
   if (!headA || !headB) return null
   
   let pa = headA, pb = headB
