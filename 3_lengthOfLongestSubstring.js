@@ -21,3 +21,43 @@ var lengthOfLongestSubstring = function(s) {
     }
   }
 }
+
+var lengthOfLongestSubstring = function(s) {
+  if (s.length === 0) return 0
+  if (s.length === 1) return 1
+  let fast = 0, str = [], res = 0
+  while (fast < s.length) {
+    if (str.indexOf(s[fast]) >= 0) {
+      res = Math.max(res, str.length)
+      let index = str.indexOf(s[fast])
+      while (index >= 0) {
+        str.shift()
+        index--
+      }
+      str.push(s[fast])
+    } else {
+      str.push(s[fast])
+    }
+    fast++
+  }
+  res = Math.max(res, str.length)
+  return res
+};
+
+var lengthOfLongestSubstring = function(s) {
+  let set = new Set()
+  let i = 0, maxLength = 0, j = 0
+  for (i; i < s.length; i++) {
+    if (set.has(s[i])) {
+      while (set.has(s[i])) {
+        set.delete(s[j++])
+      }
+      set.add(s[i])
+    } else {
+      set.add(s[i])
+      maxLength = Math.max(maxLength, set.size)
+    }
+  }
+
+  return maxLength
+};
